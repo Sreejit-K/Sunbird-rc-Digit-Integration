@@ -5,19 +5,19 @@ services:
     image: redis
     ports:
       - "6379:6379"
-  # es:
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
-  #   environment:
-  #     - discovery.type=single-node
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  #   ports:
-  #     - "9200:9200"
-  #     - "9300:9300"
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "localhost:9200/_cluster/health"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 4
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 4
   db:
     image: postgres
     ports:
@@ -80,6 +80,7 @@ services:
     environment:
       - PORT=8078
       - QR_TYPE=URL
+      - CERTIFICATE_DOMAIN_URL=${CERTIFICATE_DOMAIN_URL}
     ports:
       - "8078:8078"
   public-key-service:

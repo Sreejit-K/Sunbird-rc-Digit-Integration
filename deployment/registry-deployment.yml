@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry
+spec:
+  selector:
+    matchLabels:
+      app: registry
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      containers:
+        - name: registry
+          image: dockerhub/sunbird-rc-core
+          env:
+            - name: authentication_enabled
+              value: "false"
+            - name: connectionInfo_uri
+              value: jdbc:postgresql://db:5432/registry
+            - name: connectionInfo_username
+              value: postgres
+            - name: connectionInfo_password
+              value: postgres
+            - name: search_provider
+              value: dev.sunbirdrc.registry.service.NativeSearchService
+            - name: filestorage_connection_url
+              value: http://file-storage:9000
+            - name: filestorage_access_key
+              value: admin
+            - name: filestorage_secret_key
+              value: "12345678"
+            - name: filestorage_bucket_key
+              value: issuance
+            - name: sign_url
+              value: http://certificate-signer:8079/sign
+            - name: verify_url
+              value: http://certificate-signer:8079/verify
+            - name: signature_enabled
+              value: "true"
+            - name: pdf_url
+              value: http://certificate-api:8078/api/v1/certificatePDF
+            - name: template_base_url
+              value: http://registry:8081/api/v1/templates/
+            - name: claims_url
+              value: http://claim-ms:8082
+          ports:
+            - protocol: TCP
+              containerPort: 8081
+          readinessProbe:
+            httpGet:
+              path: /_cluster/health
+              port: 9200
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 4
+          # volumeMounts:
+          #   - name: schemas-volume
+          #     mountPath: /home/sunbirdrc/config/public/_schemas
+      volumes:
+        - name: schemas-volume
+          hostPath:
+            path: ./schemas

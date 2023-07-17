@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: certificate-api
+spec:
+  selector:
+    matchLabels:
+      app: certificate-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: certificate-api
+    spec:
+      containers:
+        - name: certificate-api
+          image: dockerhub/sunbird-rc-certificate-api
+          env:
+            - name: PORT
+              value: "8078"
+            - name: QR_TYPE
+              value: "URL"
+            - name: CERTIFICATE_DOMAIN_URL
+              value: "https://demo-digit-sunbirdrc"
+          ports:
+            - protocol: TCP
+              containerPort: 8078
+          volumeMounts:
+            - name: scripts-volume
+              mountPath: /scripts
+      volumes:
+        - name: scripts-volume
+          hostPath:

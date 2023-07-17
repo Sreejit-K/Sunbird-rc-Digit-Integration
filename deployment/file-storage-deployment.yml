@@ -1,0 +1,34 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-storage
+spec:
+  selector:
+    matchLabels:
+      app: file-storage
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: file-storage
+    spec:
+      containers:
+        - name: file-storage
+          image: quay.io/minio/minio
+          command: ["server", "--address", "0.0.0.0:9000", "--console-address", "0.0.0.0:9001", "/data"]
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+          env:
+            - name: MINIO_ROOT_USER
+              value: admin
+            - name: MINIO_ROOT_PASSWORD
+              value: "12345678"
+          # volumeMounts:
+          #   - name: minio-data-volume
+          #     mountPath: /data
+      volumes:
+        - name: minio-data-volume
+          hostPath:
+            path: ${HOME}/minio/data

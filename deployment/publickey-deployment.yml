@@ -1,0 +1,30 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: public-key-service
+spec:
+  selector:
+    matchLabels:
+      app: public-key-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: public-key-service
+    spec:
+      containers:
+        - name: public-key-service
+          image: dockerhub/sunbird-rc-public-key-service
+          ports:
+            - containerPort: 3300
+          env:
+            - name: CONFIG_BASE_PATH
+              value: /etc/keys
+          volumeMounts:
+            - name: keys-volume
+              mountPath: /etc/keys
+      volumes:
+        - name: keys-volume
+          hostPath:
+            path: ./imports

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: certificate-signer
+spec:
+  selector:
+    matchLabels:
+      app: certificate-signer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: certificate-signer
+    spec:
+      containers:
+        - name: certificate-signer
+          image: dockerhub/sunbird-rc-certificate-signer
+          env:
+            - name: PORT
+              value: "8079"
+            - name: CONFIG_BASE_PATH
+              value: /etc/signer/
+          ports:
+            - protocol: TCP
+              containerPort: 8079
+          # volumeMounts:
+          #   - name: imports-volume
+          #     mountPath: /etc/signer
+      volumes:
+        - name: imports-volume
+          hostPath:
+            path: ./imports
