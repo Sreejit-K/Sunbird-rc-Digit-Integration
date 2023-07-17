@@ -23,8 +23,9 @@ spec:
               value: /etc/keys
           volumeMounts:
             - name: keys-volume
-              mountPath: /etc/keys
+              mountPath: /etc/keys/config.json
+              subPath: config.json
       volumes:
         - name: keys-volume
-          hostPath:
-            path: ./imports
+          configMap:
+           name: public-key-config

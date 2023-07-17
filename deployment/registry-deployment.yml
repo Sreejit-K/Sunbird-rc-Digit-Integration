@@ -59,8 +59,9 @@ spec:
             failureThreshold: 4
           volumeMounts:
             - name: schemas-volume
-              mountPath: /home/sunbirdrc/config/public/_schemas
+              mountPath: /home/sunbirdrc/config/public/_schemas/BirthCertificate.json 
+              subPath: BirthCertificate.json 
       volumes:
         - name: schemas-volume
-          hostPath:
-            path: ./schemas
+          configMap:
+            name: schema-config
