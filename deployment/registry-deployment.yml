@@ -57,9 +57,9 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 10
             failureThreshold: 4
-          # volumeMounts:
-          #   - name: schemas-volume
-          #     mountPath: /home/sunbirdrc/config/public/_schemas
+          volumeMounts:
+            - name: schemas-volume
+              mountPath: /home/sunbirdrc/config/public/_schemas
       volumes:
         - name: schemas-volume
           hostPath:
