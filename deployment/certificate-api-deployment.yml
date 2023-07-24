@@ -21,7 +21,7 @@ spec:
             - name: QR_TYPE
               value: "URL"
             - name: CERTIFICATE_DOMAIN_URL
-              value: "https://demo-digit-sunbirdrc"
+              value: "https://be71-106-51-86-24.ngrok-free.app"
           ports:
             - protocol: TCP
               containerPort: 8078

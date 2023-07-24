@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: schema-config-template
+  namespace: demo-digit-sunbirdrc
+data:
+  BirthCertificate1.html: |
+    <html lang="en">
+      <head>
+          <style>
+              .line {
+                  text-align: center;
+                  font-family: 'Imperial Script';
+                  font-size: 1.5em;
+                  margin-top: 2rem;
+                  line-height: 40px;
+              }
+
+          </style>
+      </head>
+      <body style="width: 900px">
+      <div style="margin: 1em;border: 30px solid #D4A379;border-radius: 5px;background-color: #EADFC3;height: 800px">
+          <div style="border: 3px solid #A53E23; height: 99%">
+              <div style="text-align:center;font-family: Canterbury;font-size: 4em;">Birth Certificate</div>
+              <div class="line">
+                  <div>This document acknowledges that</div>
+                  <div style="text-decoration: underline;"><b>{{credentialSubject.name}}</b></div>
+                  <div>was born to</div>
+                  <div style="">
+                      <span style="text-decoration: underline;">{{credentialSubject.name_of_mother}}</span> &
+                      <span style="text-decoration: underline;">{{credentialSubject.name_of_father}}</span>
+                  </div>
+                  <div>at <span style="text-decoration: underline;">{{credentialSubject.hospital}}</span> in <span style="text-decoration: underline;">{{credentialSubject.place_of_birth}}</span></div>
+                  <div>on <span style="text-decoration: underline;">{{dateFormat proof.date_of_birth "dddd, MMMM Do YYYY"}}</span></div>
+
+              </div>
+              <img alt="qr_code" src="{{qrCode}}" style="float:left;padding-left: 2em;"/>
+              
+          </div>
+
+      </div>
+      </body>
+    </html>

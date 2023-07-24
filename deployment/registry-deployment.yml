@@ -27,11 +27,11 @@ spec:
             - name: search_provider
               value: dev.sunbirdrc.registry.service.NativeSearchService
             - name: filestorage_connection_url
-              value: http://file-storage:9000
+              value: http://file-storage.egov.svc.cluster.local:8080
             - name: filestorage_access_key
-              value: admin
+              value: "AKIA42DEGMQ2NZVNTLNI"
             - name: filestorage_secret_key
-              value: "12345678"
+              value: "LNHo5NVCkkp4bXHv6ZtfKYGX8+eKi0Spn53PoOnK"
             - name: filestorage_bucket_key
               value: issuance
             - name: sign_url
@@ -43,7 +43,9 @@ spec:
             - name: pdf_url
               value: http://certificate-api:8078/api/v1/certificatePDF
             - name: template_base_url
-              value: http://registry:8081/api/v1/templates/
+              value: https://gist.githubusercontent.com/Sreejit-K/31d9dcd9585eced279ef417b84c0e2b4/raw/cee61226149ca8a6bd4996a95687102892f1bbc8/
+            - name: template_folder_path 
+              value: /home/sunbirdrc/config/public/_schemas/templates/
             - name: claims_url
               value: http://claim-ms:8082
           ports:
@@ -61,7 +63,13 @@ spec:
             - name: schemas-volume
               mountPath: /home/sunbirdrc/config/public/_schemas/BirthCertificate.json 
               subPath: BirthCertificate.json 
+            - name: schemas-template-volume
+              mountPath: /home/sunbirdrc/config/public/_schemas/templates/BirthCertificate1.html 
+              subPath: BirthCertificate1.html 
       volumes:
         - name: schemas-volume
           configMap:
             name: schema-config
+        - name: schemas-template-volume
+          configMap:
+            name: schema-config-template

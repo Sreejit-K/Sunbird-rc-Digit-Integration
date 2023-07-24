@@ -1,0 +1,52 @@
+global:
+  host: "unified-dev.digit.org"
+  database:
+    host: 10.100.197.195
+    user: "postgres"
+    port: "5432"
+    vendor: "postgres"
+  # keycloak:
+  #   database: "keycloak"
+  #   admin:
+  #     username: "admin"
+  #   proxy_forwarding: true
+  registry:
+    database: "registry"
+    search_provider: "dev.sunbirdrc.registry.service.NativeSearchService"
+    # sso:
+    #   realm: "sunbird-rc"
+    #   admin_client_id: "admin-api"
+    #   client_id: "registry-frontend"
+    signature_enabled: true
+    # keycloak_user_set_password: false
+    base_apis_enabled: false
+    log_level: INFO
+    enable_external_templates: true
+    enable_async: false
+    enable_authentication: false
+    enable_webhook: false
+    webhook_url: http://localhost:5001/api/v1/callback
+    template_base_url: https://gist.githubusercontent.com/Sreejit-K/31d9dcd9585eced279ef417b84c0e2b4/raw/ab86337bfc6dc717fa9be1e7d198401c97d8f38e/
+    template_folder_path: public/_schemas/templates/
+    manager_type: DefinitionsManager
+    
+  minio:
+    url: "https://s3.amazonaws.com"
+    access_key: AKIA42DEGMQ2NZVNTLNI
+    bucket_key: src-issuance
+  elastic_search:
+    url: 10.9.0.9:9200
+    auth_enabled: false
+    username: ""
+  kafka:
+    url:
+  redis:
+    host: 10.100.234.245
+    port: 6379
+  secrets:
+    DB_PASSWORD: cG9zdGdyZXM=
+    ELASTIC_SEARCH_PASSWORD: ""
+    # KEYCLOAK_ADMIN_CLIENT_SECRET: YjJiMGNhYjEtMjQzZC00ZTZlLTkzZTctOTAxNWZmNjZkZjJi
+    # KEYCLOAK_ADMIN_PASSWORD: YWRtaW4xMjM=
+    # KEYCLOAK_DEFAULT_USER_PASSWORD: YWRtaW5AMTIz
+    MINIO_SECRET_KEY: TE5IbzVOVkNra3A0YlhIdjZadGZLWUdYOCtlS2kwU3BuNTNQb09uSw==

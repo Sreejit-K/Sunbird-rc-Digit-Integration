@@ -110,7 +110,7 @@
       "issuer": "did:web:sunbirdrc.dev/vc/BirthCertificate1"
     },
     "certificateTemplates": {
-      "html": "https://gist.githubusercontent.com/tejash-jl/56b97ffcb99f93e2e1ec49e88c0c2c7f/raw/1242b9af7f58b9d5ca1e4f11d442aa4815598a31/BirthCertificate.html"
+      "html": "https://gist.githubusercontent.com/Sreejit-K/31d9dcd9585eced279ef417b84c0e2b4/raw/cee61226149ca8a6bd4996a95687102892f1bbc8/BirthCertificate1.html"
     }
   }
 }

@@ -19,14 +19,15 @@ spec:
             - name: PORT
               value: "8079"
             - name: CONFIG_BASE_PATH
-              value: /etc/signer/
+              value: /etc/signer
           ports:
             - protocol: TCP
               containerPort: 8079
-          # volumeMounts:
-          #   - name: imports-volume
-          #     mountPath: /etc/signer
+          volumeMounts:
+            - name: imports-volume
+              mountPath: /etc/signer/config.json
+              subPath: config.json
       volumes:
         - name: imports-volume
-          hostPath:
-            path: ./imports
+          configMap:
+           name: public-key-config
