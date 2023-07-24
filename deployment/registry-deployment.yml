@@ -27,12 +27,6 @@ spec:
             - name: search_provider
               value: dev.sunbirdrc.registry.service.NativeSearchService
             - name: filestorage_connection_url
-              value: http://file-storage.egov.svc.cluster.local:8080
-            - name: filestorage_access_key
-              value: "AKIA42DEGMQ2NZVNTLNI"
-            - name: filestorage_secret_key
-              value: "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"
-            - name: filestorage_bucket_key
               value: issuance
             - name: sign_url
               value: http://certificate-signer:8079/sign

@@ -30,10 +30,7 @@ global:
     template_folder_path: public/_schemas/templates/
     manager_type: DefinitionsManager
     
-  minio:
-    url: "https://s3.amazonaws.com"
-    access_key: AKIA42DEGMQ2NZVNTLNI
-    bucket_key: src-issuance
+
   elastic_search:
     url: 10.9.0.9:9200
     auth_enabled: false
